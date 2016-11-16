@@ -3,7 +3,8 @@ package Main;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -39,17 +40,33 @@ Stage window;
 
         //Main window Title
 
-        //Title Label
-        dateTitle = new Label();
-        yearTitle = new Label();
-        yearTitle.setText(DateMethods.returnYear());
-        dateTitle.setText(DateMethods.returnDate());
+        //Top Scene
+            //Top menu
+            Menu fileMenu = new Menu("File");       //Menu
+            MenuItem newItem = new MenuItem("New Event...");        //Item
+            newItem.setOnAction(e -> newEventWindow.newEvent());        //action item = secondary Window
+            fileMenu.getItems().add(newItem);
+
+            MenuBar menuBar = new MenuBar();
+            menuBar.getMenus().add(fileMenu);
+
+            //Title Label
+            dateTitle = new Label();
+            yearTitle = new Label();
+            yearTitle.setText(DateMethods.returnYear());
+            dateTitle.setText(DateMethods.returnDate());
+
+            //VBox title layout
+            layoutTitle = new VBox(5);
+            layoutTitle.setAlignment(Pos.CENTER);
+            layoutTitle.getChildren().addAll(menuBar,dateTitle,yearTitle);
+
+            //Menu Bar
 
 
-        //VBox title layout
-        layoutTitle = new VBox(2);
-        layoutTitle.setAlignment(Pos.CENTER);
-        layoutTitle.getChildren().addAll(dateTitle,yearTitle);
+        //Bottom Scene
+
+
 
         //Principal BorderPane layout
         mainLayout = new BorderPane();
@@ -62,6 +79,7 @@ Stage window;
         //set up the main stage
         window.setScene(mainScene);
         window.show();
+
     }
 
 }
