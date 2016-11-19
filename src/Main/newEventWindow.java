@@ -1,6 +1,8 @@
 package Main;
 
 
+import Body.BulletEvent;
+import javafx.beans.property.StringProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -8,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.time.LocalDate;
@@ -19,6 +22,7 @@ public class newEventWindow {
         //new Stage
         Stage secondaryStage = new Stage();
         secondaryStage.setTitle("Create a new Event");
+        secondaryStage.initModality(Modality.APPLICATION_MODAL);
 
         //Top Content
             //Labels
@@ -26,17 +30,17 @@ public class newEventWindow {
             GridPane.setConstraints(nameLabel,0,0);
 
             Label typeLabel = new Label("Type : ");
-            GridPane.setConstraints(typeLabel,0,1);
+            GridPane.setConstraints(typeLabel,0,2);
 
             Label dateLabel = new Label("Date : ");
-            GridPane.setConstraints(dateLabel,0,2);
+            GridPane.setConstraints(dateLabel,0,1);
 
 
             //ChoiceBox
             ChoiceBox<String> typeChoice = new ChoiceBox<>();
             typeChoice.getItems().addAll("■ : Task","• : Note ","O : Event");
             typeChoice.setValue("■ : Task");
-            GridPane.setConstraints(typeChoice,1,1);
+            GridPane.setConstraints(typeChoice,1,2);
 
             //Inputs
             TextField nameInput = new TextField();
@@ -46,7 +50,7 @@ public class newEventWindow {
 
             //DatePicker
             DatePicker dateSelection = new DatePicker(LocalDate.now());
-            GridPane.setConstraints(dateSelection,1,2);
+            GridPane.setConstraints(dateSelection,1,1);
 
 
             //Main layout
@@ -60,8 +64,10 @@ public class newEventWindow {
             //Buttons
             Button okButton = new Button("OK");
             okButton.setDefaultButton(true);
+            okButton.setOnAction(e -> okButtonAction("coucou",convertTypeChoice(typeChoice),getDate(dateSelection),secondaryStage));
 
             Button cancelButton = new Button("Cancel");
+            cancelButton.setOnAction(e -> cancelButtonAction(secondaryStage));
 
             //Bottom layout
             HBox bottomLayout = new HBox(15);
@@ -85,25 +91,20 @@ public class newEventWindow {
         return secondaryStage;
     }
 
-    //typeChoice getter
-    public static String getTypeChoice(ChoiceBox<String> choiceBox){
-        return choiceBox.getValue();
-    }
-
     //typeChoice converter to a byte
 
-    public static Byte convertTypeChoice(String choiceBoxValue){
+    public static Byte convertTypeChoice(ChoiceBox<String> choiceBox){
         /*
         *0 = Task
         *1 = Note
         *2 = Event
         */
         Byte out = 0;
-        if (choiceBoxValue == "■ : Task")
+        if (choiceBox.getValue() == "■ : Task")
             out = 0;
-        else if (choiceBoxValue == "• : Note ")
+        else if (choiceBox.getValue() == "• : Note ")
             out = 1;
-        else if (choiceBoxValue == "O : Event")
+        else if (choiceBox.getValue() == "O : Event")
             out = 2;
 
         return out;
@@ -111,8 +112,32 @@ public class newEventWindow {
 
     //DatePicker getter
     public static LocalDate getDate(DatePicker datePicker){
-        System.out.println(datePicker.getValue());
         return datePicker.getValue();
     }
+
+
+    //OkButton Action
+    public static void okButtonAction(String stringName,Byte type,LocalDate localDate,Stage stage){
+        System.out.println(localDate);
+        System.out.println(localDate.getYear());
+        System.out.println(localDate.getMonthValue());
+        System.out.println(localDate.getDayOfMonth());
+        System.out.println(localDate.getYear()+localDate.getDayOfMonth()+localDate.getMonthValue());
+        System.out.println(stringName);
+        System.out.println(type);
+        BulletEvent newBulletEvent = new BulletEvent();
+        newBulletEvent.setName(stringName);
+        newBulletEvent.setType(type);
+        newBulletEvent.setDate(localDate);
+        newBulletEvent.setUniqueValue(localDate.getYear()+localDate.getMonthValue()+localDate.getDayOfMonth());
+        stage.close();
+    }
+
+    //CancelButton Action
+    public static void cancelButtonAction(Stage stage){
+        stage.close();
+    }
+
+
 
 }
