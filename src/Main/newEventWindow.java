@@ -2,12 +2,15 @@ package Main;
 
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
 
 public class newEventWindow {
 
@@ -17,35 +20,63 @@ public class newEventWindow {
         Stage secondaryStage = new Stage();
         secondaryStage.setTitle("Create a new Event");
 
-        //Labels
-        Label nameLabel = new Label("Name : ");
-        GridPane.setConstraints(nameLabel,0,0);
+        //Top Content
+            //Labels
+            Label nameLabel = new Label("Name : ");
+            GridPane.setConstraints(nameLabel,0,0);
 
-        Label typeLabel = new Label("Type : ");
-        GridPane.setConstraints(typeLabel,0,1);
+            Label typeLabel = new Label("Type : ");
+            GridPane.setConstraints(typeLabel,0,1);
 
-        //ChoiceBox
-        ChoiceBox<String> typeChoice = new ChoiceBox<>();
-        typeChoice.getItems().addAll("■ : Task","• : Note ","O : Event");
-        typeChoice.setValue("■ : Task");
-        GridPane.setConstraints(typeChoice,1,1);
-
-        //Inputs
-        TextField nameInput = new TextField();
-        nameInput.setPromptText("New Event");
-        nameInput.setMinWidth(300);
-        GridPane.setConstraints(nameInput,1,0);
+            Label dateLabel = new Label("Date : ");
+            GridPane.setConstraints(dateLabel,0,2);
 
 
-        //Main layout
-        GridPane secondaryLayout = new GridPane();
-        secondaryLayout.setPadding(new Insets(10,10,10,10));
-        secondaryLayout.setVgap(15);
-        secondaryLayout.setHgap(5);
-        secondaryLayout.getChildren().addAll(nameLabel,nameInput,typeLabel,typeChoice);
+            //ChoiceBox
+            ChoiceBox<String> typeChoice = new ChoiceBox<>();
+            typeChoice.getItems().addAll("■ : Task","• : Note ","O : Event");
+            typeChoice.setValue("■ : Task");
+            GridPane.setConstraints(typeChoice,1,1);
+
+            //Inputs
+            TextField nameInput = new TextField();
+            nameInput.setPromptText("New Event");
+            nameInput.setMinWidth(300);
+            GridPane.setConstraints(nameInput,1,0);
+
+            //DatePicker
+            DatePicker dateSelection = new DatePicker(LocalDate.now());
+            GridPane.setConstraints(dateSelection,1,2);
+
+
+            //Main layout
+            GridPane secondaryLayout = new GridPane();
+            secondaryLayout.setPadding(new Insets(10,10,10,10));
+            secondaryLayout.setVgap(15);
+            secondaryLayout.setHgap(5);
+            secondaryLayout.getChildren().addAll(nameLabel,nameInput,typeLabel,typeChoice,dateLabel,dateSelection);
+
+        //Bottom Content
+            //Buttons
+            Button okButton = new Button("OK");
+            okButton.setDefaultButton(true);
+
+            Button cancelButton = new Button("Cancel");
+
+            //Bottom layout
+            HBox bottomLayout = new HBox(15);
+            bottomLayout.setPadding(new Insets(20,20,20,20));
+            bottomLayout.setAlignment(Pos.CENTER_RIGHT);
+            bottomLayout.getChildren().addAll(okButton,cancelButton);
+
+        //Root Layout
+        BorderPane eventWindowRootLayout = new BorderPane();
+        eventWindowRootLayout.setCenter(secondaryLayout);
+        eventWindowRootLayout.setBottom(bottomLayout);
+
 
         //Root scene
-        Scene rootScene = new Scene(secondaryLayout,430,300);
+        Scene rootScene = new Scene(eventWindowRootLayout,430,300);
 
         //Stage settings
         secondaryStage.setScene(rootScene);
@@ -58,4 +89,30 @@ public class newEventWindow {
     public static String getTypeChoice(ChoiceBox<String> choiceBox){
         return choiceBox.getValue();
     }
+
+    //typeChoice converter to a byte
+
+    public static Byte convertTypeChoice(String choiceBoxValue){
+        /*
+        *0 = Task
+        *1 = Note
+        *2 = Event
+        */
+        Byte out = 0;
+        if (choiceBoxValue == "■ : Task")
+            out = 0;
+        else if (choiceBoxValue == "• : Note ")
+            out = 1;
+        else if (choiceBoxValue == "O : Event")
+            out = 2;
+
+        return out;
+    }
+
+    //DatePicker getter
+    public static LocalDate getDate(DatePicker datePicker){
+        System.out.println(datePicker.getValue());
+        return datePicker.getValue();
+    }
+
 }
