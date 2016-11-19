@@ -3,6 +3,8 @@ package Body;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.time.LocalDate;
+
 public class BulletEvent {
 
     /*
@@ -22,15 +24,21 @@ public class BulletEvent {
     //Initialization of the class values
     private StringProperty name;
     private Byte type;
+    private LocalDate date;
+    private Integer uniqueValue;
 
     public BulletEvent(){
         name = new SimpleStringProperty(this,"","Default Name");
         type = 0;
+        date = LocalDate.now();
+        uniqueValue = 00000000;
     }
 
-    public BulletEvent(String cName,Byte cType){
+    public BulletEvent(String cName,Byte cType,LocalDate cDate,Integer cUniqueValue){
         name = new SimpleStringProperty(this,cName,"Default Name");
         type = cType;
+        date = cDate;
+        uniqueValue = cUniqueValue;
     }
 
 
@@ -38,8 +46,17 @@ public class BulletEvent {
     public void setName(String name) {
         this.name.set(name);
     }
+
     public void setType(Byte sType){
         type = sType;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public void setUniqueValue(Integer uniqueValue) {
+        this.uniqueValue = uniqueValue;
     }
 
     //***Getters***
@@ -52,5 +69,13 @@ public class BulletEvent {
 
     public Byte getType() {
         return type;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public Integer getUniqueValue() {
+        return uniqueValue;
     }
 }
