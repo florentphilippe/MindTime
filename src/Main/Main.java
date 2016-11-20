@@ -74,7 +74,6 @@ Stage window;
         //Principal Scene
         mainScene = new Scene(mainLayout, 400, 900);
 
-
         //set up the main stage
         window.setScene(mainScene);
         window.show();

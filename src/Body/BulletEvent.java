@@ -18,9 +18,6 @@ public class BulletEvent {
     */
 
 
-
-
-
     //Initialization of the class values
     private StringProperty name;
     private Byte type;
@@ -81,7 +78,7 @@ public class BulletEvent {
 
     //toString Method
     public String toString() {
-        return "Creation of a new BulletEvent Object :"+
+        return "Creation of a new BulletEvent Object ;"+
                 "\nName : "+this.getName()+
                 "\nType : "+this.getType()+
                 "\nDate : "+this.getDate()+
