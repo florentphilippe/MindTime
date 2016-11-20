@@ -78,4 +78,14 @@ public class BulletEvent {
     public Integer getUniqueValue() {
         return uniqueValue;
     }
+
+    //toString Method
+    public String toString() {
+        return "Creation of a new BulletEvent Object :"+
+                "\nName : "+this.getName()+
+                "\nType : "+this.getType()+
+                "\nDate : "+this.getDate()+
+                "\nUniqueValue : "+this.getUniqueValue();
+
+    }
 }
