@@ -64,10 +64,13 @@ public class newEventWindow {
             //Buttons
             Button okButton = new Button("OK");
             okButton.setDefaultButton(true);
-            okButton.setOnAction(e -> okButtonAction("coucou",convertTypeChoice(typeChoice),getDate(dateSelection),secondaryStage));
+            okButton.setOnAction(e -> {
+                okButtonAction("coucou", convertTypeChoice(typeChoice), getDate(dateSelection));
+                secondaryStage.close();
+            });
 
             Button cancelButton = new Button("Cancel");
-            cancelButton.setOnAction(e -> cancelButtonAction(secondaryStage));
+            cancelButton.setOnAction(e -> secondaryStage.close());
 
             //Bottom layout
             HBox bottomLayout = new HBox(15);
@@ -92,7 +95,6 @@ public class newEventWindow {
     }
 
     //typeChoice converter to a byte
-
     public static Byte convertTypeChoice(ChoiceBox<String> choiceBox){
         /*
         *0 = Task
@@ -115,28 +117,27 @@ public class newEventWindow {
         return datePicker.getValue();
     }
 
+    //LocalDate converter to uniqueValue
+    public static Integer convertLocalDate(LocalDate localDate){
+        StringBuilder builder = new StringBuilder();
+        builder.append(localDate.getYear());
+        builder.append(localDate.getMonthValue());
+        builder.append(localDate.getDayOfMonth());
+        return Integer.parseInt(builder.toString());
+    }
+
 
     //OkButton Action
-    public static void okButtonAction(String stringName,Byte type,LocalDate localDate,Stage stage){
-        System.out.println(localDate);
-        System.out.println(localDate.getYear());
-        System.out.println(localDate.getMonthValue());
-        System.out.println(localDate.getDayOfMonth());
-        System.out.println(localDate.getYear()+localDate.getDayOfMonth()+localDate.getMonthValue());
-        System.out.println(stringName);
-        System.out.println(type);
+    public static void okButtonAction(String stringName,Byte type,LocalDate localDate){
         BulletEvent newBulletEvent = new BulletEvent();
         newBulletEvent.setName(stringName);
         newBulletEvent.setType(type);
         newBulletEvent.setDate(localDate);
-        newBulletEvent.setUniqueValue(localDate.getYear()+localDate.getMonthValue()+localDate.getDayOfMonth());
-        stage.close();
+        newBulletEvent.setUniqueValue(convertLocalDate(localDate));
+        System.out.println(newBulletEvent.toString());
     }
 
-    //CancelButton Action
-    public static void cancelButtonAction(Stage stage){
-        stage.close();
-    }
+
 
 
 
