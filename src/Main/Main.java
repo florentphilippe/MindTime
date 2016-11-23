@@ -1,5 +1,7 @@
 package Main;
 
+import Body.BulletEvent;
+import FileManagement.ConfigWriter;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,6 +33,13 @@ Stage window;
     @Override
     public void start(Stage primaryStage) throws Exception{
 
+        /*
+        *Reading :
+        *config.ser;
+        */
+        //Read BulletEvent.counter and set it
+        BulletEvent.setCounter(ConfigWriter.counterReader());
+        System.out.println("BulletEvent.counter = "+BulletEvent.getCounter()+"\n");
 
         //main Stage "window"
         window = primaryStage;
