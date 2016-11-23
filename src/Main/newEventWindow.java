@@ -1,8 +1,7 @@
 package Main;
 
-
 import Body.BulletEvent;
-import javafx.beans.property.StringProperty;
+import FileManagement.ConfigWriter;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,13 +11,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
 import java.time.LocalDate;
 
 public class newEventWindow {
 
 
-    public static Stage newEvent(){
+    public static Stage newEvent() {
         //new Stage
         Stage secondaryStage = new Stage();
         secondaryStage.setTitle("Create a new Event");
@@ -66,6 +64,7 @@ public class newEventWindow {
             okButton.setDefaultButton(true);
             okButton.setOnAction(e -> {
                 okButtonAction("coucou", convertTypeChoice(typeChoice), getDate(dateSelection));
+                ConfigWriter.counterWriter();
                 secondaryStage.close();
             });
 
