@@ -3,9 +3,10 @@ package Body;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class BulletEvent {
+public class BulletEvent implements Serializable {
 
     /*
     * The main Object of the program inspired from bullet journal
@@ -23,12 +24,16 @@ public class BulletEvent {
     private Byte type;
     private LocalDate date;
     private Integer uniqueValue;
+    private static Integer counter = 0;
+
+
 
     public BulletEvent(){
         name = new SimpleStringProperty(this,"","Default Name");
         type = 0;
         date = LocalDate.now();
         uniqueValue = 00000000;
+        counter ++;
     }
 
     public BulletEvent(String cName,Byte cType,LocalDate cDate,Integer cUniqueValue){
@@ -36,6 +41,7 @@ public class BulletEvent {
         type = cType;
         date = cDate;
         uniqueValue = cUniqueValue;
+        counter++;
     }
 
 
@@ -56,6 +62,10 @@ public class BulletEvent {
         this.uniqueValue = uniqueValue;
     }
 
+    public static void setCounter(Integer counter) {
+        BulletEvent.counter = counter;
+    }
+
     //***Getters***
     public String getName() {
         return name.get();
@@ -74,6 +84,10 @@ public class BulletEvent {
 
     public Integer getUniqueValue() {
         return uniqueValue;
+    }
+
+    public static Integer getCounter() {
+        return counter;
     }
 
     //toString Method
