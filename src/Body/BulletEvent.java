@@ -96,7 +96,9 @@ public class BulletEvent implements Serializable {
                 "\nName : "+this.getName()+
                 "\nType : "+this.getType()+
                 "\nDate : "+this.getDate()+
-                "\nUniqueValue : "+this.getUniqueValue();
+                "\nUniqueValue : "+this.getUniqueValue()+
+                "\nCounter : "+getCounter()+"\n";
+
 
     }
 }
