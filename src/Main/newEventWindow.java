@@ -63,7 +63,7 @@ public class newEventWindow {
             Button okButton = new Button("OK");
             okButton.setDefaultButton(true);
             okButton.setOnAction(e -> {
-                okButtonAction("coucou", convertTypeChoice(typeChoice), getDate(dateSelection));
+                okButtonAction(nameInput.getText(), convertTypeChoice(typeChoice), getDate(dateSelection));
                 ConfigWriter.counterWriter();
                 secondaryStage.close();
             });
@@ -135,9 +135,5 @@ public class newEventWindow {
         newBulletEvent.setUniqueValue(convertLocalDate(localDate));
         System.out.println(newBulletEvent.toString());
     }
-
-
-
-
 
 }

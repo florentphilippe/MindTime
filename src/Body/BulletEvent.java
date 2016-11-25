@@ -98,7 +98,5 @@ public class BulletEvent implements Serializable {
                 "\nDate : "+this.getDate()+
                 "\nUniqueValue : "+this.getUniqueValue()+
                 "\nCounter : "+getCounter()+"\n";
-
-
     }
 }
