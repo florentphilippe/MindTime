@@ -1,7 +1,7 @@
 package Main;
 
 import Body.BulletEvent;
-import FileManagement.ConfigWriter;
+import FileManagement.Config;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,6 +12,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.time.LocalDate;
+
+import static Main.Main.config;
 
 public class newEventWindow {
 
@@ -64,7 +66,10 @@ public class newEventWindow {
             okButton.setDefaultButton(true);
             okButton.setOnAction(e -> {
                 okButtonAction(nameInput.getText(), convertTypeChoice(typeChoice), getDate(dateSelection));
-                ConfigWriter.counterWriter();
+                config.setCounter(BulletEvent.getCounter());
+                System.out.println(config.toString());
+                Config.ConfigWriter(config);
+                System.out.println("BulletEvent.counter = "+BulletEvent.getCounter());
                 secondaryStage.close();
             });
 

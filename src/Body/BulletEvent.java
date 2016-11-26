@@ -1,5 +1,7 @@
 package Body;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -24,16 +26,21 @@ public class BulletEvent implements Serializable {
     private Byte type;
     private LocalDate date;
     private Integer uniqueValue;
-    private static Integer counter = 0;
 
 
 
-    public BulletEvent(){
-        name = new SimpleStringProperty(this,"","Default Name");
+
+
+    private static IntegerProperty counter = new SimpleIntegerProperty(0);
+
+
+
+    public BulletEvent() {
+        name = new SimpleStringProperty(this, "", "Default Name");
         type = 0;
         date = LocalDate.now();
         uniqueValue = 00000000;
-        counter ++;
+        counter.set(BulletEvent.getCounter()+1);
     }
 
     public BulletEvent(String cName,Byte cType,LocalDate cDate,Integer cUniqueValue){
@@ -41,7 +48,7 @@ public class BulletEvent implements Serializable {
         type = cType;
         date = cDate;
         uniqueValue = cUniqueValue;
-        counter++;
+        counter.set(BulletEvent.getCounter()+1);
     }
 
 
@@ -62,9 +69,11 @@ public class BulletEvent implements Serializable {
         this.uniqueValue = uniqueValue;
     }
 
-    public static void setCounter(Integer counter) {
-        BulletEvent.counter = counter;
+    public static void setCounter(int counter) {
+        BulletEvent.counter.set(counter);
     }
+
+
 
     //***Getters***
     public String getName() {
@@ -86,9 +95,14 @@ public class BulletEvent implements Serializable {
         return uniqueValue;
     }
 
-    public static Integer getCounter() {
+    public static IntegerProperty counterProperty() {
         return counter;
     }
+    public static int getCounter() {
+        return counter.get();
+    }
+
+
 
     //toString Method
     public String toString() {

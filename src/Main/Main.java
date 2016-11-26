@@ -1,7 +1,7 @@
 package Main;
 
 import Body.BulletEvent;
-import FileManagement.ConfigWriter;
+import FileManagement.Config;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,6 +30,9 @@ BorderPane mainLayout;
 Scene mainScene;
 Stage window;
 
+public static BulletEvent[] list = new BulletEvent[1000000];
+public static Config config = new Config();
+
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -37,9 +40,13 @@ Stage window;
         *Reading :
         *config.ser;
         */
-        //Read BulletEvent.counter and set it
-        BulletEvent.setCounter(ConfigWriter.counterReader());
-        System.out.println("BulletEvent.counter = "+BulletEvent.getCounter()+"\n");
+        //importing configuration
+        config = Config.ConfigReader();
+        System.out.println(config.toString());
+
+        //Set BulletEvent counter from config
+        BulletEvent.setCounter(config.getCounter());
+        System.out.println("BulletEvent.counter = "+BulletEvent.getCounter());
 
         //main Stage "window"
         window = primaryStage;
