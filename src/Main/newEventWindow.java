@@ -2,6 +2,7 @@ package Main;
 
 import Body.BulletEvent;
 import FileManagement.Config;
+import FileManagement.ObjectsManager;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,8 +13,9 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.time.LocalDate;
-
+import static FileManagement.ObjectsManager.list;
 import static Main.Main.config;
+
 
 public class newEventWindow {
 
@@ -66,10 +68,7 @@ public class newEventWindow {
             okButton.setDefaultButton(true);
             okButton.setOnAction(e -> {
                 okButtonAction(nameInput.getText(), convertTypeChoice(typeChoice), getDate(dateSelection));
-                config.setCounter(BulletEvent.getCounter());
-                System.out.println(config.toString());
-                Config.ConfigWriter(config);
-                System.out.println("BulletEvent.counter = "+BulletEvent.getCounter());
+                System.out.println("BulletEvent.counter = "+BulletEvent.getCounter()+"\n");
                 secondaryStage.close();
             });
 
@@ -133,12 +132,24 @@ public class newEventWindow {
 
     //OkButton Action
     public static void okButtonAction(String stringName,Byte type,LocalDate localDate){
+        //Create new event and add it to the list
         BulletEvent newBulletEvent = new BulletEvent();
         newBulletEvent.setName(stringName);
         newBulletEvent.setType(type);
         newBulletEvent.setDate(localDate);
         newBulletEvent.setUniqueValue(convertLocalDate(localDate));
         System.out.println(newBulletEvent.toString());
+
+
+        list.add(newBulletEvent);
+        System.out.println("list.lengh = "+list.size());
+        System.out.println("----------------------\n"+list.get(0).toString());
+        ObjectsManager.ObjectListWriter(list);
+
+        //update config
+        config.setCounter(BulletEvent.getCounter());
+        Config.ConfigWriter(config);
+        System.out.println(config.toString());
     }
 
 }

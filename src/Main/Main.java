@@ -2,6 +2,7 @@ package Main;
 
 import Body.BulletEvent;
 import FileManagement.Config;
+import FileManagement.ObjectsManager;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,6 +10,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import static FileManagement.ObjectsManager.list;
+
 
 public class Main extends Application {
 
@@ -30,15 +33,16 @@ BorderPane mainLayout;
 Scene mainScene;
 Stage window;
 
-public static BulletEvent[] list = new BulletEvent[1000000];
+
 public static Config config = new Config();
+
 
     @Override
     public void start(Stage primaryStage) throws Exception{
 
         /*
         *Reading :
-        *config.ser;
+        *config.ser, objects.ser
         */
         //importing configuration
         config = Config.ConfigReader();
@@ -46,7 +50,15 @@ public static Config config = new Config();
 
         //Set BulletEvent counter from config
         BulletEvent.setCounter(config.getCounter());
-        System.out.println("BulletEvent.counter = "+BulletEvent.getCounter());
+        System.out.println("BulletEvent.counter = "+BulletEvent.getCounter()+"\n");
+
+        //Importing BulletEvent list
+        list = ObjectsManager.ObjectListReader();
+        System.out.println(list.size()+" objects imported from objects.ser\n");
+        //System.out.println(list.get(0).toString());
+
+
+
 
         //main Stage "window"
         window = primaryStage;

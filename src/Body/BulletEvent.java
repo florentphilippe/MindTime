@@ -7,8 +7,9 @@ import javafx.beans.property.StringProperty;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class BulletEvent implements Serializable {
+public class BulletEvent extends ArrayList implements Serializable {
 
     /*
     * The main Object of the program inspired from bullet journal
