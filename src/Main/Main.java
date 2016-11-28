@@ -52,6 +52,7 @@ public static Config config = new Config();
         System.out.println("BulletEvent.counter = "+BulletEvent.getCounter()+"\n");
 
         //Importing BulletEvent list
+        System.out.println(ObjectsManager.ObjectListReader().size()+" Objects imported from objects.ser ...");
         bulletEvents = ObjectsManager.ObjectListReader();
         System.out.println(bulletEvents.size()+" objects imported from objects.ser\n");
         //System.out.println(list.get(0).toString());
