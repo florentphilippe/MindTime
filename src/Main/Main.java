@@ -10,8 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import static FileManagement.ObjectsManager.list;
-
+import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -33,7 +32,7 @@ BorderPane mainLayout;
 Scene mainScene;
 Stage window;
 
-
+public static ArrayList<BulletEvent> bulletEvents = new ArrayList<BulletEvent>();
 public static Config config = new Config();
 
 
@@ -53,8 +52,8 @@ public static Config config = new Config();
         System.out.println("BulletEvent.counter = "+BulletEvent.getCounter()+"\n");
 
         //Importing BulletEvent list
-        list = ObjectsManager.ObjectListReader();
-        System.out.println(list.size()+" objects imported from objects.ser\n");
+        bulletEvents = ObjectsManager.ObjectListReader();
+        System.out.println(bulletEvents.size()+" objects imported from objects.ser\n");
         //System.out.println(list.get(0).toString());
 
 

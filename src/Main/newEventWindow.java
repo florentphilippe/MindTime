@@ -13,7 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import java.time.LocalDate;
-import static FileManagement.ObjectsManager.list;
+import static Main.Main.bulletEvents;
 import static Main.Main.config;
 
 
@@ -141,10 +141,10 @@ public class newEventWindow {
         System.out.println(newBulletEvent.toString());
 
 
-        list.add(newBulletEvent);
-        System.out.println("list.lengh = "+list.size());
-        System.out.println("----------------------\n"+list.get(0).toString());
-        ObjectsManager.ObjectListWriter(list);
+        bulletEvents.add(newBulletEvent);
+        System.out.println("list.lengh = "+bulletEvents.size());
+        System.out.println("----------------------\n"+bulletEvents.get(0).toString());
+        ObjectsManager.ObjectListWriter(bulletEvents);
 
         //update config
         config.setCounter(BulletEvent.getCounter());
