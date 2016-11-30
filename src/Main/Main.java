@@ -52,15 +52,12 @@ public static Config config = new Config();
         System.out.println("BulletEvent.counter = "+BulletEvent.getCounter()+"\n");
 
         //Importing BulletEvent list
-
         bulletEvents.addAll(ObjectsManager.ObjectListReader());
         System.out.println(bulletEvents.size()+" objects imported from objects.ser\n");
-        //System.out.println(list.get(0).toString());
 
 
 
-
-        //main Stage "window"
+        //Main Stage "window"
         window = primaryStage;
         window.setTitle("Mind Time");
 
@@ -88,7 +85,6 @@ public static Config config = new Config();
             layoutTitle.setAlignment(Pos.CENTER);
             layoutTitle.getChildren().addAll(menuBar,dateTitle,yearTitle);
 
-            //Menu Bar
 
 
         //Bottom Scene

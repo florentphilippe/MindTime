@@ -140,10 +140,9 @@ public class newEventWindow {
         newBulletEvent.setUniqueValue(convertLocalDate(localDate));
         System.out.println(newBulletEvent.toString());
 
-
+        //Writing list to file
         bulletEvents.add(newBulletEvent);
         System.out.println("list.lengh = "+bulletEvents.size());
-        System.out.println("----------------------\n"+bulletEvents.get(0).toString());
         ObjectsManager.ObjectListWriter(bulletEvents);
 
         //update config

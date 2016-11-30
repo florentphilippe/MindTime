@@ -1,10 +1,5 @@
 package Body;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -96,7 +91,7 @@ public class BulletEvent implements Serializable {
 
     //toString Method
     public String toString() {
-        return "Creation of a new BulletEvent Object ;"+
+        return "BulletEvent Object ;"+
                 "\nName : "+this.getName()+
                 "\nType : "+this.getType()+
                 "\nDate : "+this.getDate()+

@@ -19,9 +19,8 @@ public class ObjectsManager  {
             objectOutputStream.close();
             fileOutputStream.close();
         }catch (IOException exception){
-            exception.printStackTrace();
-            System.out.println("Writing new file : objects.ser ...");
             System.out.println("Writing BulletEventList to objects.ser");
+            System.out.println("Writing new file : objects.ser ...");
             System.out.println("BulletEvent list.lengh = "+arrayList.size()+"\n");
         }
     }
@@ -36,12 +35,10 @@ public class ObjectsManager  {
             objectInputStream.close();
             fileInputStream.close();
         }catch (IOException exception){
-            exception.printStackTrace();
             System.out.println("Impossible to access objects.ser ...");
             arrayList = new ArrayList<>();
         }catch (ClassNotFoundException ex){
             arrayList = new ArrayList<>();
-            ex.printStackTrace();
         }
          return arrayList;
     }
