@@ -7,9 +7,9 @@ import javafx.beans.property.StringProperty;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-public class BulletEvent extends ArrayList implements Serializable {
+
+public class BulletEvent implements Serializable {
 
     /*
     * The main Object of the program inspired from bullet journal
@@ -23,39 +23,34 @@ public class BulletEvent extends ArrayList implements Serializable {
 
 
     //Initialization of the class values
-    private StringProperty name;
+    private String name;
     private Byte type;
     private LocalDate date;
     private Integer uniqueValue;
-
-
-
-
-
-    private static IntegerProperty counter = new SimpleIntegerProperty(0);
+    private static Integer counter = 0;
 
 
 
     public BulletEvent() {
-        name = new SimpleStringProperty(this, "", "Default Name");
+        name = "Default Name";
         type = 0;
         date = LocalDate.now();
         uniqueValue = 00000000;
-        counter.set(BulletEvent.getCounter()+1);
+        counter++;
     }
 
     public BulletEvent(String cName,Byte cType,LocalDate cDate,Integer cUniqueValue){
-        name = new SimpleStringProperty(this,cName,"Default Name");
+        name = cName;
         type = cType;
         date = cDate;
         uniqueValue = cUniqueValue;
-        counter.set(BulletEvent.getCounter()+1);
+        counter++;
     }
 
 
     //***Setters***
     public void setName(String name) {
-        this.name.set(name);
+        this.name = name;
     }
 
     public void setType(Byte sType){
@@ -71,16 +66,13 @@ public class BulletEvent extends ArrayList implements Serializable {
     }
 
     public static void setCounter(int counter) {
-        BulletEvent.counter.set(counter);
+        BulletEvent.counter = counter;
     }
 
 
 
     //***Getters***
     public String getName() {
-        return name.get();
-    }
-    public StringProperty nameProperty() {
         return name;
     }
 
@@ -96,11 +88,8 @@ public class BulletEvent extends ArrayList implements Serializable {
         return uniqueValue;
     }
 
-    public static IntegerProperty counterProperty() {
-        return counter;
-    }
     public static int getCounter() {
-        return counter.get();
+        return counter;
     }
 
 
