@@ -24,6 +24,7 @@ public class newEventWindow {
         //new Stage
         Stage secondaryStage = new Stage();
         secondaryStage.setTitle("Create a new Event");
+        secondaryStage.setResizable(false);
         secondaryStage.initModality(Modality.APPLICATION_MODAL);
 
         //Top Content
@@ -140,8 +141,9 @@ public class newEventWindow {
         newBulletEvent.setUniqueValue(convertLocalDate(localDate));
         System.out.println(newBulletEvent.toString());
 
-        //Writing list to file
+        //Sorting and writing list to file
         bulletEvents.add(newBulletEvent);
+        //bulletEvents.addAll(ObjectsManager.BulletEventSorter(bulletEvents,newBulletEvent));
         System.out.println("list.lengh = "+bulletEvents.size());
         ObjectsManager.ObjectListWriter(bulletEvents);
 

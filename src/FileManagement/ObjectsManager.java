@@ -15,7 +15,6 @@ public class ObjectsManager  {
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(arrayList);
             System.out.println("Writing BulletEventList to objects.ser");
-            System.out.println("BulletEvent list.lengh = "+arrayList.size()+"\n");
             objectOutputStream.close();
             fileOutputStream.close();
         }catch (IOException exception){
@@ -42,5 +41,25 @@ public class ObjectsManager  {
         }
          return arrayList;
     }
+
+    //BulletEvent list sorter
+    public static ArrayList BulletEventSorter(ArrayList<BulletEvent>  sourceList, BulletEvent bulletEvent){
+        ArrayList finalList = new ArrayList();        //Destination list
+        Integer i = 0;          //Loop variable
+        while(i < sourceList.size()){
+
+            if (bulletEvent.getUniqueValue() <= sourceList.get(i).getUniqueValue()){
+                finalList.add(bulletEvent);
+                i++;
+            }
+            else {
+                finalList.add(sourceList.get(i));
+            i++;
+            }
+        }
+        return finalList;
+    }
+
+
 
 }
