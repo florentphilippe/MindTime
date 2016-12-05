@@ -43,21 +43,36 @@ public class ObjectsManager  {
     }
 
     //BulletEvent list sorter
-    public static ArrayList BulletEventSorter(ArrayList<BulletEvent>  sourceList, BulletEvent bulletEvent){
+    public static void BulletEventSorter(ArrayList<BulletEvent> sourceList, BulletEvent bulletEvent){
         ArrayList finalList = new ArrayList();        //Destination list
         Integer i = 0;          //Loop variable
-        while(i < sourceList.size()){
+        Integer y = sourceList.size();
 
-            if (bulletEvent.getUniqueValue() <= sourceList.get(i).getUniqueValue()){
-                finalList.add(bulletEvent);
+        if (y == 0)
+            finalList.add(bulletEvent);
+
+        else {
+            while (i <= y ) {
+
+                if (bulletEvent.getUniqueValue() <= sourceList.get(i).getUniqueValue() || bulletEvent.getUniqueValue() > sourceList.get(i).getUniqueValue()) {
+                    finalList.add(bulletEvent);
+                    i++;
+                    break;
+                }
+                else {
+                    finalList.add(sourceList.get(i));
+                    i++;
+                }
+            }
+            while (i <= y+1) {
+                finalList.add(sourceList.get(i));
                 i++;
             }
-            else {
-                finalList.add(sourceList.get(i));
-            i++;
-            }
         }
-        return finalList;
+        System.out.println("Final list size = "+finalList.size());
+        System.out.println("Number of loop : "+i);
+        sourceList.clear();
+        sourceList.addAll(finalList);
     }
 
 

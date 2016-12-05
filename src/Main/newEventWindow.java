@@ -142,9 +142,10 @@ public class newEventWindow {
         System.out.println(newBulletEvent.toString());
 
         //Sorting and writing list to file
-        bulletEvents.add(newBulletEvent);
-        //bulletEvents.addAll(ObjectsManager.BulletEventSorter(bulletEvents,newBulletEvent));
-        System.out.println("list.lengh = "+bulletEvents.size());
+        //bulletEvents.add(newBulletEvent);
+        System.out.println("list.lengh = "+bulletEvents.size()+" [Before]");
+        ObjectsManager.BulletEventSorter(bulletEvents,newBulletEvent);
+        System.out.println("list.lengh = "+bulletEvents.size()+" [After]");
         ObjectsManager.ObjectListWriter(bulletEvents);
 
         //update config
