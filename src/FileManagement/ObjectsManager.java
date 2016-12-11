@@ -46,32 +46,38 @@ public class ObjectsManager  {
 
     //BulletEvent list sorter
     public static void BulletEventSorter(ArrayList<BulletEvent> sourceList, BulletEvent bulletEvent){
-        ArrayList finalList = new ArrayList();        //Destination list
-        Integer elementInList = 0;          //Loop variable
-        Integer y = sourceList.size();
+        ArrayList<BulletEvent> finalList = new ArrayList<>();
+        Integer elementInList = 0;
 
-        if (y == 0) {
+        if (sourceList.isEmpty() == true){
             finalList.add(bulletEvent);
-            elementInList++;
+            System.out.println("Number of loops : 1");
         }
-        else {
-            while (elementInList <= y ) {
-                if (bulletEvent.getUniqueValue() <= sourceList.get(elementInList).getUniqueValue() && bulletEvent.getUniqueValue() > sourceList.get(elementInList).getUniqueValue()) {
-                    finalList.add(bulletEvent);
-                    break;
-                }
-                else {
-                    finalList.add(sourceList.get(elementInList));
-                    elementInList++;
-                }
-            }
-            while (elementInList <= y) {
+        else if (bulletEvent.getUniqueValue() > sourceList.get(elementInList).getUniqueValue()){
+            while (bulletEvent.getUniqueValue() >= sourceList.get(elementInList).getUniqueValue()){
                 finalList.add(sourceList.get(elementInList));
                 elementInList++;
             }
+
+            finalList.add(bulletEvent);
+
+            while (finalList.size() < sourceList.size()+1){
+                finalList.add(sourceList.get(elementInList));
+                elementInList++;
+            }
+            System.out.println("Number of loops : "+elementInList);
         }
-        System.out.println("Final list size = "+finalList.size());
-        System.out.println("Number of loop : "+elementInList);
+        else if (bulletEvent.getUniqueValue() <= sourceList.get(elementInList).getUniqueValue()){
+
+            finalList.add(bulletEvent);
+
+            while(finalList.size() < sourceList.size()+1){
+                finalList.add(sourceList.get(elementInList));
+                elementInList++;
+            }
+            System.out.println("Number of loops : "+elementInList);
+        }
+
         sourceList.clear();
         sourceList.addAll(finalList);
     }
