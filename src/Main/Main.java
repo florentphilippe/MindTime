@@ -55,6 +55,13 @@ public static Config config = new Config();
         bulletEvents.addAll(ObjectsManager.ObjectListReader());
         System.out.println(bulletEvents.size()+" objects imported from objects.ser\n");
 
+        //Sorting tests !!!!!!!!!!!!!!!!
+        Integer aze = 0;
+        while(aze < bulletEvents.size()){
+            System.out.println("Element "+aze+" unique value = "+bulletEvents.get(aze).getUniqueValue());
+            aze++;
+        }
+
 
 
         //Main Stage "window"
