@@ -123,10 +123,23 @@ public class newEventWindow {
 
     //LocalDate converter to uniqueValue
     public static Integer convertLocalDate(LocalDate localDate){
-        StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();    //build the string
+
         builder.append(localDate.getYear());
-        builder.append(localDate.getMonthValue());
-        builder.append(localDate.getDayOfMonth());
+
+
+        if (localDate.getMonthValue() == 1 || localDate.getMonthValue() == 2 || localDate.getMonthValue() == 3 || localDate.getMonthValue() == 4 || localDate.getMonthValue() == 5 ||
+                localDate.getMonthValue() == 6 || localDate.getMonthValue() == 7 || localDate.getMonthValue() == 8 || localDate.getMonthValue() == 9)
+            builder.append(0);
+        builder.append(localDate.getMonthValue());      //must always have to number
+
+
+        if (localDate.getDayOfMonth() == 1 || localDate.getDayOfMonth() == 2 || localDate.getDayOfMonth() == 3 || localDate.getDayOfMonth() == 4 || localDate.getDayOfMonth() == 5 ||
+                localDate.getDayOfMonth() == 6 || localDate.getDayOfMonth() == 7 ||localDate.getDayOfMonth() == 8 || localDate.getDayOfMonth() == 9);
+            builder.append(0);
+        builder.append(localDate.getDayOfMonth());      //must always have to number
+
+
         return Integer.parseInt(builder.toString());
     }
 
