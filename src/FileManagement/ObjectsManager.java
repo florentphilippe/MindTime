@@ -4,8 +4,10 @@ package FileManagement;
 import Body.BulletEvent;
 import com.sun.deploy.security.DeployURLClassPathCallback;
 
+import javax.swing.text.html.HTMLDocument;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class ObjectsManager  {
 
@@ -47,6 +49,7 @@ public class ObjectsManager  {
     //BulletEvent list sorter
     public static void BulletEventSorter(ArrayList<BulletEvent> sourceList, BulletEvent bulletEvent){
         ArrayList<BulletEvent> finalList = new ArrayList<>();
+        Iterator iterator = sourceList.iterator();        //Adding Iterator
         Integer elementInList = 0;
 
         if (sourceList.isEmpty() == true){
@@ -54,7 +57,7 @@ public class ObjectsManager  {
             System.out.println("Number of loops : 1");
         }
         else if (bulletEvent.getUniqueValue() > sourceList.get(elementInList).getUniqueValue()){
-            while (bulletEvent.getUniqueValue() >= sourceList.get(elementInList).getUniqueValue()){
+            while (bulletEvent.getUniqueValue() > sourceList.get(elementInList).getUniqueValue() && iterator.hasNext()){
                 finalList.add(sourceList.get(elementInList));
                 elementInList++;
             }
