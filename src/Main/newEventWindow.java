@@ -128,16 +128,15 @@ public class newEventWindow {
         builder.append(localDate.getYear());
 
 
-        if (localDate.getMonthValue() == 1 || localDate.getMonthValue() == 2 || localDate.getMonthValue() == 3 || localDate.getMonthValue() == 4 || localDate.getMonthValue() == 5 ||
-                localDate.getMonthValue() == 6 || localDate.getMonthValue() == 7 || localDate.getMonthValue() == 8 || localDate.getMonthValue() == 9)
+        if (localDate.getMonthValue() == 1 || localDate.getMonthValue() == 2 || localDate.getMonthValue() == 3 || localDate.getMonthValue() == 4 || localDate.getMonthValue() == 5 ||       //must always have to number
+                localDate.getMonthValue() == 6 || localDate.getMonthValue() == 7 || localDate.getMonthValue() == 8 || localDate.getMonthValue() == 9){
             builder.append(0);
-        builder.append(localDate.getMonthValue());      //must always have to number
+            builder.append(localDate.getMonthValue());
+        }else
+            builder.append(localDate.getMonthValue());
 
 
-        if (localDate.getDayOfMonth() == 1 || localDate.getDayOfMonth() == 2 || localDate.getDayOfMonth() == 3 || localDate.getDayOfMonth() == 4 || localDate.getDayOfMonth() == 5 ||
-                localDate.getDayOfMonth() == 6 || localDate.getDayOfMonth() == 7 ||localDate.getDayOfMonth() == 8 || localDate.getDayOfMonth() == 9);
-            builder.append(0);
-        builder.append(localDate.getDayOfMonth());      //must always have to number
+        builder.append(localDate.getDayOfMonth());      //Always return 2 characters even for values in [0;9]
 
 
         return Integer.parseInt(builder.toString());
@@ -158,7 +157,7 @@ public class newEventWindow {
         //bulletEvents.add(newBulletEvent);
         System.out.println("list.lengh = "+bulletEvents.size()+" [Before]");
         ObjectsManager.BulletEventSorter(bulletEvents,newBulletEvent);
-        System.out.println("list.lengh = "+bulletEvents.size()+" [After]");
+        System.out.println("list.lengh = "+bulletEvents.size()+" [After]\n");
         ObjectsManager.ObjectListWriter(bulletEvents);
 
         //update config
