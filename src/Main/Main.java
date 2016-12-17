@@ -1,6 +1,7 @@
 package Main;
 
 import Body.BulletEvent;
+import Body.DayEvent;
 import FileManagement.Config;
 import FileManagement.ObjectsManager;
 import javafx.application.Application;
@@ -32,7 +33,8 @@ BorderPane mainLayout;
 Scene mainScene;
 Stage window;
 
-public static ArrayList<BulletEvent> bulletEvents = new ArrayList<BulletEvent>();
+public static ArrayList<BulletEvent> bulletEvents = new ArrayList<BulletEvent>();       //Contain all the BulletEvents from the file
+public static ArrayList<DayEvent> dayEvents = new ArrayList<>();        //Contain all the DayEvents built from the bulletEvents list
 public static Config config = new Config();
 
 
@@ -42,6 +44,7 @@ public static Config config = new Config();
         /*
         *Reading :
         *config.ser, objects.ser
+        *Converting bulletsEvent into a DayEvent List
         */
         //importing configuration
         config = Config.ConfigReader();
@@ -61,7 +64,16 @@ public static Config config = new Config();
             System.out.println("Element "+aze+" unique value = "+bulletEvents.get(aze).getUniqueValue());
             aze++;
         }
+        System.out.println("");
 
+        //Paste into the DayEvent List
+        dayEvents.addAll(DayEvent.automaticConstructor(bulletEvents));
+        System.out.println("DayEvent list size : "+dayEvents.size());
+        Integer i = 0;
+        for (DayEvent dayEvent : dayEvents) {
+            System.out.println("DayEvent n° " + i + " unique value : " + dayEvent.getUniqueValue());
+            System.out.println("DayEvent n° " + i + " number of elements : "+dayEvent.getEventsList().size());
+        }
 
 
         //Main Stage "window"
