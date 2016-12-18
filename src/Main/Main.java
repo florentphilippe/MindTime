@@ -72,7 +72,8 @@ public static Config config = new Config();
         Integer i = 0;
         for (DayEvent dayEvent : dayEvents) {
             System.out.println("DayEvent n° " + i + " unique value : " + dayEvent.getUniqueValue());
-            System.out.println("DayEvent n° " + i + " number of elements : "+dayEvent.getEventsList().size());
+            System.out.println("DayEvent n° " + i + " number of elements : "+dayEvent.getEventsList().size()+"\n");
+            i++;
         }
 
 

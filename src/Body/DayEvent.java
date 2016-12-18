@@ -1,6 +1,7 @@
 package Body;
 
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ListIterator;
@@ -75,45 +76,47 @@ public class DayEvent {
         ListIterator<BulletEvent> iterator = sourceList.listIterator();
         ArrayList<DayEvent> finaList = new ArrayList<>();
 
-        while(iterator.hasNext()){
+        while(loop){
             if (iterator.nextIndex() == 0) {
+                System.out.println("Processing first element of the list...");
+                ArrayList<BulletEvent> processingList = new ArrayList<>();
                 DayEvent dayEvent = new DayEvent();
                 dayEvent.setUniqueValue(sourceList.get(iterator.nextIndex()).getUniqueValue());
                 dayEvent.setDateEvents(sourceList.get(iterator.nextIndex()).getDate());
-                dayEvent.getEventsList().add(iterator.next());
+                processingList.add(iterator.next());
 
                 while (sourceList.get(iterator.nextIndex()).getUniqueValue() == sourceList.get(iterator.nextIndex()-1).getUniqueValue()){
-                    dayEvent.setUniqueValue(sourceList.get(iterator.nextIndex()).getUniqueValue());
-                    dayEvent.setDateEvents(sourceList.get(iterator.nextIndex()).getDate());
-                    dayEvent.getEventsList().add(iterator.next());
+                    processingList.add(iterator.next());
+                    System.out.println("Processing loop");
                 }
+                dayEvent.setEventsList(processingList);
                 finaList.add(dayEvent);
 
             }
             else{
-                if(sourceList.get(iterator.nextIndex()).getUniqueValue() == sourceList.get(iterator.nextIndex()-1).getUniqueValue()) {
-                    DayEvent dayEvent = new DayEvent();
+                DayEvent dayEvent = new DayEvent();
+                ArrayList<BulletEvent> processingList = new ArrayList<>();
+                dayEvent.setUniqueValue(sourceList.get(iterator.nextIndex()).getUniqueValue());
+                dayEvent.setDateEvents(sourceList.get(iterator.nextIndex()).getDate());
+                processingList.add(iterator.next());
+
+                if (!iterator.hasNext()) {
+                    dayEvent.setEventsList(processingList);
+                    finaList.add(dayEvent);
+                    loop = false;
+                }
+                else {
                     while (sourceList.get(iterator.nextIndex()).getUniqueValue() == sourceList.get(iterator.nextIndex()-1).getUniqueValue()) {
-                        dayEvent.setUniqueValue(sourceList.get(iterator.nextIndex()).getUniqueValue());
-                        dayEvent.setDateEvents(sourceList.get(iterator.nextIndex()).getDate());
-                        dayEvent.getEventsList().add(iterator.next());
+                        processingList.add(iterator.next());
                     }
+                    dayEvent.setEventsList(processingList);
                     finaList.add(dayEvent);
                 }
-                else{
-                    DayEvent dayEvent = new DayEvent();
-                    dayEvent.setUniqueValue(sourceList.get(iterator.nextIndex()).getUniqueValue());
-                    dayEvent.setDateEvents(sourceList.get(iterator.nextIndex()).getDate());
-                    dayEvent.getEventsList().add(iterator.next());
 
-                    if (iterator.hasNext() == false){
-                       finaList.add(dayEvent);
-                       System.out.println("End of the list");
-                    }
-                    else if (sourceList.get(iterator.nextIndex()).getUniqueValue() != sourceList.get(iterator.nextIndex()+1).getUniqueValue()) {
-                        finaList.add(dayEvent);
-                    }
-                }
+                /*if (sourceList.get(iterator.nextIndex()).getUniqueValue() != sourceList.get(iterator.nextIndex() + 1).getUniqueValue()) {
+                           finaList.add(dayEvent);
+                 }
+                */
             }
         }
     System.out.println("Number of loops : "+iterator.nextIndex());
