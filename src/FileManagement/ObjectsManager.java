@@ -2,12 +2,9 @@ package FileManagement;
 
 
 import Body.BulletEvent;
-import com.sun.deploy.security.DeployURLClassPathCallback;
-
-import javax.swing.text.html.HTMLDocument;
+import Body.DayEvent;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.ListIterator;
 
 public class ObjectsManager  {
@@ -86,6 +83,70 @@ public class ObjectsManager  {
         System.out.println("Number of loop : "+elementInList);
         sourceList.clear();
         sourceList.addAll(finalList);
+    }
+
+    //Automatic constructor of a list from BulletEvent ArrayList
+    public static ArrayList<DayEvent> automaticConstructor(ArrayList<BulletEvent> sourceList){
+        System.out.println("Launching the automaticConstructor method ... ");
+
+        boolean loop = true;
+        ListIterator<BulletEvent> iterator = sourceList.listIterator();
+        ArrayList<DayEvent> finaList = new ArrayList<>();
+
+        while(loop){
+            if (iterator.nextIndex() == 0) {
+                System.out.println("Processing first element of the list...");
+                ArrayList<BulletEvent> processingList = new ArrayList<>();
+                DayEvent dayEvent = new DayEvent();
+                dayEvent.setUniqueValue(sourceList.get(iterator.nextIndex()).getUniqueValue());
+                dayEvent.setDateEvents(sourceList.get(iterator.nextIndex()).getDate());
+                processingList.add(iterator.next());
+
+                if (!iterator.hasNext()) {
+                    dayEvent.setEventsList(processingList);
+                    finaList.add(dayEvent);
+                    loop = false;
+                }
+                else {
+                    while (sourceList.get(iterator.nextIndex()).getDate().equals(sourceList.get(iterator.previousIndex()).getDate())) {
+                        processingList.add(iterator.next());
+                        if(!iterator.hasNext()){
+                            loop = false;
+                            break;
+                        }
+                    }
+                }
+                dayEvent.setEventsList(processingList);
+                finaList.add(dayEvent);
+
+            }
+            else{
+                DayEvent dayEvent = new DayEvent();
+                ArrayList<BulletEvent> processingList = new ArrayList<>();
+                dayEvent.setUniqueValue(sourceList.get(iterator.nextIndex()).getUniqueValue());
+                dayEvent.setDateEvents(sourceList.get(iterator.nextIndex()).getDate());
+                processingList.add(iterator.next());
+
+                if (!iterator.hasNext()) {
+                    dayEvent.setEventsList(processingList);
+                    finaList.add(dayEvent);
+                    loop = false;
+                }
+                else {
+                    while (sourceList.get(iterator.nextIndex()).getDate().equals(sourceList.get(iterator.previousIndex()).getDate())) {
+                        processingList.add(iterator.next());
+                        if(!iterator.hasNext()){
+                            loop = false;
+                            break;
+                        }
+                    }
+                    dayEvent.setEventsList(processingList);
+                    finaList.add(dayEvent);
+                }
+            }
+        }
+        System.out.println("Number of loops : "+iterator.nextIndex()+"\n");
+        return finaList;
     }
 
 

@@ -68,7 +68,7 @@ public static Config config = new Config();
 
         //Convert BulletEvent list into the DayEvent List
         if (!bulletEvents.isEmpty()) {
-            dayEvents.addAll(DayEvent.automaticConstructor(bulletEvents));
+            dayEvents.addAll(ObjectsManager.automaticConstructor(bulletEvents));
             System.out.println("DayEvent list size : " + dayEvents.size());
             Integer i = 0;
             for (DayEvent dayEvent : dayEvents) {
