@@ -66,14 +66,16 @@ public static Config config = new Config();
         }
         System.out.println("");
 
-        //Paste into the DayEvent List
-        dayEvents.addAll(DayEvent.automaticConstructor(bulletEvents));
-        System.out.println("DayEvent list size : "+dayEvents.size());
-        Integer i = 0;
-        for (DayEvent dayEvent : dayEvents) {
-            System.out.println("DayEvent n° " + i + " unique value : " + dayEvent.getUniqueValue());
-            System.out.println("DayEvent n° " + i + " number of elements : "+dayEvent.getEventsList().size()+"\n");
-            i++;
+        //Convert BulletEvent list into the DayEvent List
+        if (!bulletEvents.isEmpty()) {
+            dayEvents.addAll(DayEvent.automaticConstructor(bulletEvents));
+            System.out.println("DayEvent list size : " + dayEvents.size());
+            Integer i = 0;
+            for (DayEvent dayEvent : dayEvents) {
+                System.out.println("DayEvent n° " + i + " unique value : " + dayEvent.getUniqueValue());
+                System.out.println("DayEvent n° " + i + " number of elements : " + dayEvent.getEventsList().size() + "\n");
+                i++;
+            }
         }
 
 

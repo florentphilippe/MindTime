@@ -85,9 +85,19 @@ public class DayEvent {
                 dayEvent.setDateEvents(sourceList.get(iterator.nextIndex()).getDate());
                 processingList.add(iterator.next());
 
-                while (sourceList.get(iterator.nextIndex()).getUniqueValue() == sourceList.get(iterator.nextIndex()-1).getUniqueValue()){
-                    processingList.add(iterator.next());
-                    System.out.println("Processing loop");
+                if (!iterator.hasNext()) {
+                    dayEvent.setEventsList(processingList);
+                    finaList.add(dayEvent);
+                    loop = false;
+                }
+                else {
+                    while (sourceList.get(iterator.nextIndex()).getDate().equals(sourceList.get(iterator.previousIndex()).getDate())) {
+                        processingList.add(iterator.next());
+                        if(!iterator.hasNext()){
+                            loop = false;
+                            break;
+                        }
+                    }
                 }
                 dayEvent.setEventsList(processingList);
                 finaList.add(dayEvent);
@@ -106,20 +116,19 @@ public class DayEvent {
                     loop = false;
                 }
                 else {
-                    while (sourceList.get(iterator.nextIndex()).getUniqueValue() == sourceList.get(iterator.nextIndex()-1).getUniqueValue()) {
+                    while (sourceList.get(iterator.nextIndex()).getDate().equals(sourceList.get(iterator.previousIndex()).getDate())) {
                         processingList.add(iterator.next());
+                        if(!iterator.hasNext()){
+                            loop = false;
+                            break;
+                        }
                     }
                     dayEvent.setEventsList(processingList);
                     finaList.add(dayEvent);
                 }
-
-                /*if (sourceList.get(iterator.nextIndex()).getUniqueValue() != sourceList.get(iterator.nextIndex() + 1).getUniqueValue()) {
-                           finaList.add(dayEvent);
-                 }
-                */
             }
         }
-    System.out.println("Number of loops : "+iterator.nextIndex());
+    System.out.println("Number of loops : "+iterator.nextIndex()+"\n");
     return finaList;
     }
 }
