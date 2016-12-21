@@ -125,6 +125,5 @@ public static Config config = new Config();
         window.show();
 
     }
-
 }
 

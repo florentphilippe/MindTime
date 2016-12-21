@@ -61,8 +61,6 @@ public class ObjectsManager  {
                     finalList.add(iterator.next());
                     elementInList++;
                 }
-
-
                 else if (bulletEvent.getUniqueValue() <= sourceList.get(iterator.nextIndex()).getUniqueValue()){
                     finalList.add(bulletEvent);
                     elementInList++;
@@ -73,7 +71,6 @@ public class ObjectsManager  {
                 finalList.add(iterator.next());
                 elementInList++;
             }
-
         }
         if(finalList.size() == sourceList.size()){          //In case bulletEvent has to be the last element of the finalList
             finalList.add(bulletEvent);
@@ -84,6 +81,46 @@ public class ObjectsManager  {
         sourceList.clear();
         sourceList.addAll(finalList);
     }
+
+    //DayEvent list sorter
+    public static void dayEventSorter(ArrayList<DayEvent> sourceList, DayEvent dayEvent){
+        System.out.println("Sorting the list");
+        ArrayList<DayEvent> finalList = new ArrayList<>();
+        ListIterator<DayEvent> iterator = sourceList.listIterator();        //Adding Iterator
+        Integer elementInList = 0;
+
+        if (sourceList.isEmpty() == true){
+            finalList.add(dayEvent);
+            elementInList++;
+        }
+        else{
+            while (iterator.hasNext()){
+                if (dayEvent.getUniqueValue() > sourceList.get(iterator.nextIndex()).getUniqueValue()){
+                    finalList.add(iterator.next());
+                    elementInList++;
+                }
+                else if (dayEvent.getUniqueValue() <= sourceList.get(iterator.nextIndex()).getUniqueValue()){
+                    finalList.add(dayEvent);
+                    elementInList++;
+                    break;
+                }
+            }
+            while (iterator.hasNext()){
+                finalList.add(iterator.next());
+                elementInList++;
+            }
+        }
+        if(finalList.size() == sourceList.size()){          //In case dayEvent has to be the last element of the finalList
+            finalList.add(dayEvent);
+            elementInList++;
+        }
+
+        System.out.println("Number of loop : "+elementInList);
+        sourceList.clear();
+        sourceList.addAll(finalList);
+    }
+
+
 
     //Automatic constructor of a list from BulletEvent ArrayList
     public static ArrayList<DayEvent> automaticConstructor(ArrayList<BulletEvent> sourceList){
@@ -149,6 +186,33 @@ public class ObjectsManager  {
         return finaList;
     }
 
+
+    //DayEvent adder to the main list
+    public static void dayEventAdder(ArrayList<DayEvent> sourceList, BulletEvent bulletEvent){
+        System.out.println("Adding BulletEvent to DayEvent list");
+        ListIterator<DayEvent> iterator;
+        iterator = sourceList.listIterator();
+        boolean found = false;
+
+        while(iterator.hasNext()){
+            if (bulletEvent.getDate().equals(sourceList.get(iterator.nextIndex()).getDateEvents())){
+                System.out.println("Adding BulletEvent : "+bulletEvent.getDate()+"; to DayEvent : "+sourceList.get(iterator.nextIndex()).getDateEvents());
+                iterator.next().getEventsList().add(bulletEvent);
+                found = true;
+                break;
+            }
+        }
+        if (!found){
+            DayEvent dayEvent = new DayEvent();
+            System.out.println("Creating new DayEvent ...");
+            dayEvent.getEventsList().add(bulletEvent);
+            dayEvent.setDateEvents(bulletEvent.getDate());
+            dayEvent.setUniqueValue(bulletEvent.getUniqueValue());
+
+            dayEventSorter(sourceList,dayEvent);
+            System.out.println("Sorting DayEvent list");
+        }
+    }
 
 
 }

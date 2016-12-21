@@ -1,6 +1,7 @@
 package Main;
 
 import Body.BulletEvent;
+import Body.DayEvent;
 import FileManagement.Config;
 import FileManagement.ObjectsManager;
 import javafx.geometry.Insets;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 import java.time.LocalDate;
 import static Main.Main.bulletEvents;
 import static Main.Main.config;
+import static Main.Main.dayEvents;
 
 
 public class newEventWindow {
@@ -159,6 +161,15 @@ public class newEventWindow {
         ObjectsManager.BulletEventSorter(bulletEvents,newBulletEvent);
         System.out.println("list.lengh = "+bulletEvents.size()+" [After]\n");
         ObjectsManager.ObjectListWriter(bulletEvents);
+
+        //Adding BulletEvent into DayEvent list
+        ObjectsManager.dayEventAdder(Main.dayEvents,newBulletEvent);
+        Integer i = 0;
+        for (DayEvent dayEvent : dayEvents) {
+            System.out.println("DayEvent n° " + i + " unique value : " + dayEvent.getUniqueValue());
+            System.out.println("DayEvent n° " + i + " number of elements : " + dayEvent.getEventsList().size() + "\n");
+            i++;
+        }
 
         //update config
         config.setCounter(BulletEvent.getCounter());
