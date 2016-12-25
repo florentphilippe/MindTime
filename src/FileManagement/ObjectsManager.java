@@ -203,14 +203,15 @@ public class ObjectsManager  {
             }
         }
         if (!found){
+            System.out.println("Entering If ");
             DayEvent dayEvent = new DayEvent();
             System.out.println("Creating new DayEvent ...");
             dayEvent.getEventsList().add(bulletEvent);
             dayEvent.setDateEvents(bulletEvent.getDate());
             dayEvent.setUniqueValue(bulletEvent.getUniqueValue());
 
-            dayEventSorter(sourceList,dayEvent);
             System.out.println("Sorting DayEvent list");
+            dayEventSorter(sourceList,dayEvent);
         }
     }
 

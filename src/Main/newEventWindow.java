@@ -162,7 +162,19 @@ public class newEventWindow {
         System.out.println("list.lengh = "+bulletEvents.size()+" [After]\n");
         ObjectsManager.ObjectListWriter(bulletEvents);
 
+
         //Adding BulletEvent into DayEvent list
+        dayEvents.clear();
+        dayEvents.addAll(ObjectsManager.automaticConstructor(bulletEvents));
+        Integer i = 0;
+        for (DayEvent dayEvent : dayEvents) {
+            System.out.println("DayEvent n° " + i + " unique value : " + dayEvent.getUniqueValue());
+            System.out.println("DayEvent n° " + i + " number of elements : " + dayEvent.getEventsList().size() + "\n");
+            i++;
+        }
+
+
+        /* This method doesn't working...
         ObjectsManager.dayEventAdder(Main.dayEvents,newBulletEvent);
         Integer i = 0;
         for (DayEvent dayEvent : dayEvents) {
@@ -170,6 +182,7 @@ public class newEventWindow {
             System.out.println("DayEvent n° " + i + " number of elements : " + dayEvent.getEventsList().size() + "\n");
             i++;
         }
+        */
 
         //update config
         config.setCounter(BulletEvent.getCounter());
