@@ -9,21 +9,15 @@ public class Config implements Serializable {
 
     //Initialization of config variables
     private Integer counter;
-    private Integer listLengh;
 
     //Main constructor
     public Config() {
         counter = 0;
-        listLengh = 0;
     }
 
     //***Setters***
     public void setCounter(Integer counter) {
         this.counter = counter;
-    }
-
-    public void setListLengh(Integer listLengh) {
-        this.listLengh = listLengh;
     }
 
 
@@ -32,9 +26,6 @@ public class Config implements Serializable {
         return counter;
     }
 
-    public Integer getListLengh() {
-        return listLengh;
-    }
 
 
     //Writer
@@ -67,8 +58,7 @@ public class Config implements Serializable {
     @Override
     public String toString() {
         return "\nConfig values ; \n" +
-                "Counter : " + this.getCounter()+"\n"+
-                "ListLengh : " + this.getListLengh() +"\n";
+                "Counter : " + this.getCounter()+"\n";
     }
 }
 

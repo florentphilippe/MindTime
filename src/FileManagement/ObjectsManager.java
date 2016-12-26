@@ -4,7 +4,6 @@ package FileManagement;
 import Core.BulletEvent;
 import Core.DayEvent;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;

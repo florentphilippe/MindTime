@@ -21,7 +21,7 @@ public class Main extends Application {
 
     /*
     * The MindTime Project
-    * v.0
+    * v. 1.0 (26/12/2016)
     *
     * Started on the 12/11/2016
     */
@@ -106,11 +106,6 @@ public static Config config = new Config();
             layoutTitle = new VBox(5);
             layoutTitle.setAlignment(Pos.CENTER);
             layoutTitle.getChildren().addAll(menuBar,dateTitle,yearTitle);
-
-
-
-        //Bottom Scene
-
 
 
         //Principal BorderPane layout
