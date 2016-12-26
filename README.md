@@ -1,5 +1,6 @@
 #Mind Time
 A very small client inspired from the Bullet Journal that help you to manage better your time :p
+
 Actually it's not so powerful for now, the project started recently and I'll do my best to improve it.
 
 ## Features
@@ -12,11 +13,14 @@ Actually it's not so powerful for now, the project started recently and I'll do 
 
 ## Download
 Download it directly from [here](https://github.com/florentphilippe/MindTime/raw/master/out/artifacts/MindTime_jar/MindTime.jar)
+
 It is available for Windows, Mac OS and linux ... Just check you have Java installed before.
-_Be careful !_ The software will create automatic files to store your data in the same folder... 
+
+_Be careful !_ The software will create automatic files to store your data in the same folder...
 
 ## Version
 It is in v.1
+
 The next step will be to allow more flexibility for the user to modify and organize his events.
 
 ## Help
