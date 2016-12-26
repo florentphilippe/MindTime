@@ -1,8 +1,8 @@
 package FileManagement;
 
 
-import Body.BulletEvent;
-import Body.DayEvent;
+import Core.BulletEvent;
+import Core.DayEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;

@@ -1,7 +1,7 @@
 package Main;
 
-import Body.BulletEvent;
-import Body.DayEvent;
+import Core.BulletEvent;
+import Core.DayEvent;
 import FileManagement.Config;
 import FileManagement.ObjectsManager;
 import javafx.geometry.Insets;

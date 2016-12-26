@@ -1,4 +1,4 @@
-package Body;
+package Core;
 
 import javafx.scene.control.ChoiceBox;
 
