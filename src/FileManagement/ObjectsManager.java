@@ -121,9 +121,10 @@ public class ObjectsManager  {
                             break;
                         }
                     }
+                    dayEvent.setEventsList(processingList);
+                    finaList.add(dayEvent);
                 }
-                dayEvent.setEventsList(processingList);
-                finaList.add(dayEvent);
+
 
             }
             else{
