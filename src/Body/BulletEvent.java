@@ -1,5 +1,7 @@
 package Body;
 
+import javafx.scene.control.ChoiceBox;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -98,4 +100,42 @@ public class BulletEvent implements Serializable {
                 "\nUniqueValue : "+this.getUniqueValue()+
                 "\nCounter : "+getCounter()+"\n";
     }
+
+    //typeChoice converter to  byte for type
+    public static Byte convertTypeChoice(ChoiceBox<String> choiceBox){
+        /*
+        *0 = Task
+        *1 = Note
+        *2 = Event
+        */
+        Byte out = 0;
+        if (choiceBox.getValue() == "■ : Task")
+            out = 0;
+        else if (choiceBox.getValue() == "• : Note ")
+            out = 1;
+        else if (choiceBox.getValue() == "O : Event")
+            out = 2;
+
+        return out;
+    }
+
+    //Byte converter to String
+    public static String convertByte(Byte type){
+        /*
+        * ■ = Task
+        * • = Note
+        * O = Event
+        */
+
+        String out = new String();
+        if (type.equals(0))
+            out = "■ : ";
+        else if (type.equals(1))
+            out = "• : ";
+        else if (type.equals(2))
+            out = "O : ";
+
+        return out;
+    }
 }
+

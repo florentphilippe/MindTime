@@ -70,7 +70,7 @@ public class newEventWindow {
             Button okButton = new Button("OK");
             okButton.setDefaultButton(true);
             okButton.setOnAction(e -> {
-                okButtonAction(nameInput.getText(), convertTypeChoice(typeChoice), getDate(dateSelection));
+                okButtonAction(nameInput.getText(), BulletEvent.convertTypeChoice(typeChoice), getDate(dateSelection));
                 System.out.println("BulletEvent.counter = "+BulletEvent.getCounter()+"\n");
                 secondaryStage.close();
             });
@@ -100,23 +100,7 @@ public class newEventWindow {
         return secondaryStage;
     }
 
-    //typeChoice converter to a byte
-    public static Byte convertTypeChoice(ChoiceBox<String> choiceBox){
-        /*
-        *0 = Task
-        *1 = Note
-        *2 = Event
-        */
-        Byte out = 0;
-        if (choiceBox.getValue() == "■ : Task")
-            out = 0;
-        else if (choiceBox.getValue() == "• : Note ")
-            out = 1;
-        else if (choiceBox.getValue() == "O : Event")
-            out = 2;
 
-        return out;
-    }
 
     //DatePicker getter
     public static LocalDate getDate(DatePicker datePicker){
