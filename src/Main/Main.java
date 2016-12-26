@@ -29,7 +29,7 @@ public class Main extends Application {
 //Initialization :
 Label dateTitle,yearTitle;
 VBox layoutTitle;
-BorderPane mainLayout;
+static BorderPane mainLayout;
 Scene mainScene;
 Stage window;
 

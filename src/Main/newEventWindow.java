@@ -157,6 +157,9 @@ public class newEventWindow {
             i++;
         }
 
+        //Setting the content in Main window
+        Main.mainLayout.setCenter(ObjectsManager.dayEventConstructor(dayEvents));
+
 
         /* This method doesn't working...
         ObjectsManager.dayEventAdder(Main.dayEvents,newBulletEvent);
