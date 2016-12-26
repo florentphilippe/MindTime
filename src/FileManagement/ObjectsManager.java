@@ -3,6 +3,11 @@ package FileManagement;
 
 import Body.BulletEvent;
 import Body.DayEvent;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.ListIterator;
@@ -82,43 +87,7 @@ public class ObjectsManager  {
         sourceList.addAll(finalList);
     }
 
-    //DayEvent list sorter
-    public static void dayEventSorter(ArrayList<DayEvent> sourceList, DayEvent dayEvent){
-        System.out.println("Sorting the list");
-        ArrayList<DayEvent> finalList = new ArrayList<>();
-        ListIterator<DayEvent> iterator = sourceList.listIterator();        //Adding Iterator
-        Integer elementInList = 0;
 
-        if (sourceList.isEmpty() == true){
-            finalList.add(dayEvent);
-            elementInList++;
-        }
-        else{
-            while (iterator.hasNext()){
-                if (dayEvent.getUniqueValue() > sourceList.get(iterator.nextIndex()).getUniqueValue()){
-                    finalList.add(iterator.next());
-                    elementInList++;
-                }
-                else if (dayEvent.getUniqueValue() <= sourceList.get(iterator.nextIndex()).getUniqueValue()){
-                    finalList.add(dayEvent);
-                    elementInList++;
-                    break;
-                }
-            }
-            while (iterator.hasNext()){
-                finalList.add(iterator.next());
-                elementInList++;
-            }
-        }
-        if(finalList.size() == sourceList.size()){          //In case dayEvent has to be the last element of the finalList
-            finalList.add(dayEvent);
-            elementInList++;
-        }
-
-        System.out.println("Number of loop : "+elementInList);
-        sourceList.clear();
-        sourceList.addAll(finalList);
-    }
 
 
 
@@ -186,6 +155,74 @@ public class ObjectsManager  {
         return finaList;
     }
 
+    //Construct a gui from the DayEvent list
+    public static VBox dayEventConstructor(ArrayList<DayEvent> sourceList){
+        VBox main = new VBox(5);
+        main.setPadding(new Insets(5,5,5,15));
+
+        for(DayEvent currentDay : sourceList){
+            Label title = new Label();
+            Text text = new Text();
+            VBox element = new VBox();
+            StringBuilder content = new StringBuilder();
+
+            title.setText("\t"+currentDay.getDateEvents().getDayOfWeek()+" "+currentDay.getDateEvents().getDayOfMonth()+" "+currentDay.getDateEvents().getMonth());
+
+            for (BulletEvent currentEvent : currentDay.getEventsList()){
+                content.append(BulletEvent.convertByte(currentEvent.getType()));
+                content.append(currentEvent.getName()+"\n");
+            }
+            text.setText(content.toString());
+            element.getChildren().addAll(title,text);
+            main.getChildren().addAll(element);
+
+        }
+        return main;
+    }
+
+
+
+    /*
+    Those two methods are DEPRECATED. They raise an error in "java platform binary". Don't know where is the issue
+     */
+    //DayEvent list sorter
+    public static void dayEventSorter(ArrayList<DayEvent> sourceList, DayEvent dayEvent){
+        System.out.println("Sorting the list");
+        ArrayList<DayEvent> finalList = new ArrayList<>();
+        ListIterator<DayEvent> iterator = sourceList.listIterator();        //Adding Iterator
+        Integer elementInList = 0;
+
+        if (sourceList.isEmpty() == true){
+            finalList.add(dayEvent);
+            elementInList++;
+        }
+        else{
+            while (iterator.hasNext()){
+                if (dayEvent.getUniqueValue() > sourceList.get(iterator.nextIndex()).getUniqueValue()){
+                    finalList.add(iterator.next());
+                    elementInList++;
+                }
+                else if (dayEvent.getUniqueValue() <= sourceList.get(iterator.nextIndex()).getUniqueValue()){
+                    finalList.add(dayEvent);
+                    elementInList++;
+                    break;
+                }
+            }
+            while (iterator.hasNext()){
+                finalList.add(iterator.next());
+                elementInList++;
+            }
+        }
+        if(finalList.size() == sourceList.size()){          //In case dayEvent has to be the last element of the finalList
+            finalList.add(dayEvent);
+            elementInList++;
+        }
+
+        System.out.println("Number of loop : "+elementInList);
+        sourceList.clear();
+        sourceList.addAll(finalList);
+    }
+
 
     //DayEvent adder to the main list
     public static void dayEventAdder(ArrayList<DayEvent> sourceList, BulletEvent bulletEvent){
@@ -214,6 +251,8 @@ public class ObjectsManager  {
             dayEventSorter(sourceList,dayEvent);
         }
     }
+
+
 
 
 }

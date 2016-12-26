@@ -116,6 +116,7 @@ public static Config config = new Config();
         //Principal BorderPane layout
         mainLayout = new BorderPane();
         mainLayout.setTop(layoutTitle);
+        mainLayout.setCenter(ObjectsManager.dayEventConstructor(dayEvents));
 
         //Principal Scene
         mainScene = new Scene(mainLayout, 400, 900);

@@ -128,11 +128,11 @@ public class BulletEvent implements Serializable {
         */
 
         String out = new String();
-        if (type.equals(0))
+        if (type == 0)
             out = "■ : ";
-        else if (type.equals(1))
+        else if (type == 1)
             out = "• : ";
-        else if (type.equals(2))
+        else if (type == 2)
             out = "O : ";
 
         return out;
