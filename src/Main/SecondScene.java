@@ -3,15 +3,18 @@ package Main;
 import Core.BulletEvent;
 import Core.DayEvent;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class SecondScene {
 
-    //Scene that appears when clicking on "Edit" on each DayEvent
+    //Scene which appears when clicking on "Edit" on each DayEvent
     public static Scene SecondScene(DayEvent currentDayEvent){
         Label title = new Label();
 
@@ -45,6 +48,19 @@ public class SecondScene {
         }
 
         rootLayout.setCenter(mainLayout);
+
+        //Bottom
+        Button returnButton = new Button();
+        returnButton.setText("Return");
+        returnButton.setOnAction(event -> Main.window.setScene(Main.mainScene));
+
+        HBox bottomLayout= new HBox(25);
+        bottomLayout.getChildren().add(returnButton);
+        bottomLayout.setAlignment(Pos.CENTER_RIGHT);
+        bottomLayout.setPadding(new Insets(5,25,25,5));
+
+        rootLayout.setBottom(bottomLayout);
+
 
         return new Scene(rootLayout,400,900);
     }

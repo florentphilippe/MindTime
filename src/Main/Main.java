@@ -32,7 +32,7 @@ public static Menu bulletMenu;
 public static MenuBar menuBar;
 VBox layoutTitle;
 static BorderPane mainLayout;
-Scene mainScene;
+public static Scene mainScene;
 public static Stage window;
 
 public static ArrayList<BulletEvent> bulletEvents = new ArrayList<BulletEvent>();       //Contain all the BulletEvents from the file
@@ -91,7 +91,7 @@ public static Config config = new Config();
 
         //Top Scene
             //Top menu
-            bulletMenu = new Menu("File");       //Menu
+            bulletMenu = new Menu("BulletEvent");       //Menu
             MenuItem newItem = new MenuItem("New Event...");        //Item
             newItem.setOnAction(e -> newEventWindow.newEvent());        //action item = secondary Window
             bulletMenu.getItems().add(newItem);
