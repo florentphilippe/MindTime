@@ -68,4 +68,15 @@ public class DayEvent {
         return new String(dayEvent.getDateEvents().getDayOfWeek()+" "+dayEvent.getDateEvents().getDayOfMonth()+" "+dayEvent.getDateEvents().getMonth());
     }
 
+    //Bullet Event deleter
+    public static void bulletDeleter(BulletEvent bulletEvent, DayEvent dayEvent){
+
+        for(BulletEvent currentBulletEvent : dayEvent.getEventsList()){
+
+            if(currentBulletEvent.getName().equals(bulletEvent.getName())){
+                dayEvent.getEventsList().remove(currentBulletEvent);
+                System.out.println("1 BulletEvent deleted");
+            }
+        }
+    }
 }
