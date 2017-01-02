@@ -28,6 +28,8 @@ public class Main extends Application {
 
 //Initialization :
 Label dateTitle,yearTitle;
+public static Menu bulletMenu;
+public static MenuBar menuBar;
 VBox layoutTitle;
 static BorderPane mainLayout;
 Scene mainScene;
@@ -89,13 +91,13 @@ public static Config config = new Config();
 
         //Top Scene
             //Top menu
-            Menu fileMenu = new Menu("File");       //Menu
+            bulletMenu = new Menu("File");       //Menu
             MenuItem newItem = new MenuItem("New Event...");        //Item
             newItem.setOnAction(e -> newEventWindow.newEvent());        //action item = secondary Window
-            fileMenu.getItems().add(newItem);
+            bulletMenu.getItems().add(newItem);
 
-            MenuBar menuBar = new MenuBar();
-            menuBar.getMenus().add(fileMenu);
+            menuBar = new MenuBar();
+            menuBar.getMenus().add(bulletMenu);
 
             //Title Label
             dateTitle = new Label();

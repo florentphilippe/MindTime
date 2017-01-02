@@ -2,6 +2,7 @@ package Main;
 
 import Core.BulletEvent;
 import Core.DayEvent;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,10 +14,16 @@ public class SecondScene {
     //Scene that appears when clicking on "Edit" on each DayEvent
     public static Scene SecondScene(DayEvent currentDayEvent){
         Label title = new Label();
+
         title.setText("\t"+DayEvent.nameConstructor(currentDayEvent));
 
-        //Main Layout
+        //Root Layout
+        BorderPane rootLayout = new BorderPane();
+        rootLayout.setTop(Main.menuBar);
+
+        //Content Layout
         VBox mainLayout = new VBox(20);
+        mainLayout.setPadding(new Insets(20,15,5,15));
         mainLayout.getChildren().add(title);
 
         for (BulletEvent currentEvent : currentDayEvent.getEventsList()){
@@ -31,6 +38,8 @@ public class SecondScene {
             mainLayout.getChildren().add(borderPane);
         }
 
-        return new Scene(mainLayout);
+        rootLayout.setCenter(mainLayout);
+
+        return new Scene(rootLayout,400,900);
     }
 }
