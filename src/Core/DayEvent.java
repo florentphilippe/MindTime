@@ -1,6 +1,9 @@
 package Core;
 
 
+import FileManagement.ObjectsManager;
+import Main.Main;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -15,14 +18,14 @@ public class DayEvent {
 
 
     //Main Constructor
-    public DayEvent(){
+    public DayEvent() {
         eventsList = new ArrayList<>();
         dateEvents = LocalDate.now();
         uniqueValue = 00000000;
     }
 
     //Parameters Constructor
-    public DayEvent(ArrayList<BulletEvent> cArrayList,LocalDate cLocalDate,Integer cUniqueValue){
+    public DayEvent(ArrayList<BulletEvent> cArrayList, LocalDate cLocalDate, Integer cUniqueValue) {
         eventsList.addAll(cArrayList);
         dateEvents = LocalDate.now();
         uniqueValue = this.getEventsList().get(0).getUniqueValue();
@@ -58,25 +61,32 @@ public class DayEvent {
     //***ToString***
     public String toString() {
         return "DayEvent\n" +
-                "List size = " +this.getEventsList().size()+"\n"+
-                "Date = " + this.getDateEvents()+"\n"+
-                "UniqueValue = " + this.getUniqueValue()+"\n";
+                "List size = " + this.getEventsList().size() + "\n" +
+                "Date = " + this.getDateEvents() + "\n" +
+                "UniqueValue = " + this.getUniqueValue() + "\n";
     }
 
     //Name constructor (Actually it is the date)
-    public static String nameConstructor(DayEvent dayEvent){
-        return new String(dayEvent.getDateEvents().getDayOfWeek()+" "+dayEvent.getDateEvents().getDayOfMonth()+" "+dayEvent.getDateEvents().getMonth());
+    public static String nameConstructor(DayEvent dayEvent) {
+        return new String(dayEvent.getDateEvents().getDayOfWeek() + " " + dayEvent.getDateEvents().getDayOfMonth() + " " + dayEvent.getDateEvents().getMonth());
     }
 
     //Bullet Event deleter
-    public static void bulletDeleter(BulletEvent bulletEvent, DayEvent dayEvent){
+    public static void bulletDeleter(BulletEvent bulletEvent) {
+        ArrayList<BulletEvent> processingList = new ArrayList<>();
+        Integer i = 0;
 
-        for(BulletEvent currentBulletEvent : dayEvent.getEventsList()){
+        for (BulletEvent currentBulletEvent : Main.bulletEvents) {
 
-            if(currentBulletEvent.getName().equals(bulletEvent.getName())){
-                dayEvent.getEventsList().remove(currentBulletEvent);
-                System.out.println("1 BulletEvent deleted");
+            if (currentBulletEvent.getName().equals(bulletEvent.getName())) {
+                System.out.println("Removing 1 Element");
+            }else{
+                processingList.add(currentBulletEvent);
             }
+        i++;
         }
+        Main.bulletEvents.clear();
+        Main.bulletEvents.addAll(processingList);
+        ObjectsManager.ObjectListWriter(Main.bulletEvents);
     }
 }

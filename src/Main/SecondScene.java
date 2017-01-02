@@ -33,6 +33,12 @@ public class SecondScene {
 
             eventName.setText(BulletEvent.convertByte(currentEvent.getType())+" "+currentEvent.getName());
             deleteButton.setText("Delete");
+            deleteButton.setOnAction(event -> {
+                DayEvent.bulletDeleter(currentEvent);
+                deleteButton.setText("Deleted");
+                deleteButton.setDisable(true);
+                });
+
             borderPane.setLeft(eventName);
             borderPane.setRight(deleteButton);
             mainLayout.getChildren().add(borderPane);
