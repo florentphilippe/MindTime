@@ -5,7 +5,7 @@ Actually it's not so powerful for now, the project started recently and I'll do 
 ## Features
 * Manage smarter your time by choosing a icon for your events
 * Inspired a lot from the BulletJournal which make you able to manage your time easier and quickly
-* Cross-platform : the program is a simple jar that can be launch on Windows, Mac OS and even linux. You just need to have installed [Java](https://www.java.com)
+* Cross-platform : the program is a simple jar that can be launch on Windows, Mac OS and even linux. You just need [Java](https://www.java.com)
 * Very light and fast
 
 ... And there are a lot more coming soon ;)
