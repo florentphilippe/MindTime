@@ -107,11 +107,15 @@ public static Config config = new Config();
             layoutTitle.setAlignment(Pos.CENTER);
             layoutTitle.getChildren().addAll(menuBar,dateTitle,yearTitle);
 
+        //Center Scene
+        ScrollPane centerPane = new ScrollPane(ObjectsManager.dayEventConstructor(dayEvents));
+        centerPane.setFitToWidth(true);
+
 
         //Principal BorderPane layout
         mainLayout = new BorderPane();
         mainLayout.setTop(layoutTitle);
-        mainLayout.setCenter(ObjectsManager.dayEventConstructor(dayEvents));
+        mainLayout.setCenter(centerPane);
 
         //Principal Scene
         mainScene = new Scene(mainLayout, 400, 900);
