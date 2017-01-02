@@ -16,7 +16,7 @@ It is available for Windows, Mac OS and linux ... Just check you have Java insta
 **Be careful !** The software will create automatic files to store your data in the same folder...
 
 ## Version
-It is in v.1 .
+It is in V.1.1 .
 The next step will be to allow more flexibility for the user to modify and organize his events.
 
 ## Help
