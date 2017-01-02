@@ -63,4 +63,9 @@ public class DayEvent {
                 "UniqueValue = " + this.getUniqueValue()+"\n";
     }
 
+    //Name constructor (Actually it is the date)
+    public static String nameConstructor(DayEvent dayEvent){
+        return new String(dayEvent.getDateEvents().getDayOfWeek()+" "+dayEvent.getDateEvents().getDayOfMonth()+" "+dayEvent.getDateEvents().getMonth());
+    }
+
 }

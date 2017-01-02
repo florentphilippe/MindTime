@@ -169,8 +169,9 @@ public class ObjectsManager  {
             VBox element = new VBox();
             StringBuilder content = new StringBuilder();
 
-            title.setText("\t"+currentDay.getDateEvents().getDayOfWeek()+" "+currentDay.getDateEvents().getDayOfMonth()+" "+currentDay.getDateEvents().getMonth());
+            title.setText("\t"+DayEvent.nameConstructor(currentDay));
             edit.setText("Edit");
+            edit.setOnAction(e -> Main.Main.window.setScene(Main.SecondScene.SecondScene(currentDay)));
 
             for (BulletEvent currentEvent : currentDay.getEventsList()){
                 content.append(BulletEvent.convertByte(currentEvent.getType()));

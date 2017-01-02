@@ -31,7 +31,7 @@ Label dateTitle,yearTitle;
 VBox layoutTitle;
 static BorderPane mainLayout;
 Scene mainScene;
-Stage window;
+public static Stage window;
 
 public static ArrayList<BulletEvent> bulletEvents = new ArrayList<BulletEvent>();       //Contain all the BulletEvents from the file
 public static ArrayList<DayEvent> dayEvents = new ArrayList<>();        //Contain all the DayEvents built from the bulletEvents list
@@ -82,6 +82,7 @@ public static Config config = new Config();
         //Main Stage "window"
         window = primaryStage;
         window.setTitle("Mind Time");
+        window.setMaxWidth(450);
 
 
         //Main window Title
