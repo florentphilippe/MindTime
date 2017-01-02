@@ -5,6 +5,7 @@ import Core.BulletEvent;
 import Core.DayEvent;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import java.io.*;
@@ -163,17 +164,22 @@ public class ObjectsManager  {
         for(DayEvent currentDay : sourceList){
             Label title = new Label();
             Text text = new Text();
+            BorderPane top = new BorderPane();
+            Button edit = new Button();
             VBox element = new VBox();
             StringBuilder content = new StringBuilder();
 
             title.setText("\t"+currentDay.getDateEvents().getDayOfWeek()+" "+currentDay.getDateEvents().getDayOfMonth()+" "+currentDay.getDateEvents().getMonth());
+            edit.setText("Edit");
 
             for (BulletEvent currentEvent : currentDay.getEventsList()){
                 content.append(BulletEvent.convertByte(currentEvent.getType()));
                 content.append(currentEvent.getName()+"\n");
             }
+            top.setLeft(title);
+            top.setRight(edit);
             text.setText(content.toString());
-            element.getChildren().addAll(title,text);
+            element.getChildren().addAll(top,text);
             main.getChildren().addAll(element);
 
         }
