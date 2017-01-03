@@ -28,10 +28,10 @@ public class Main extends Application {
     */
 
 //Initialization :
-Label dateTitle,yearTitle;
+static Label dateTitle,yearTitle;
 public static Menu bulletMenu;
 public static MenuBar menuBar;
-VBox layoutTitle;
+static VBox layoutTitle;
 static BorderPane mainLayout;
 public static Scene mainScene;
 public static Stage window;
@@ -87,10 +87,16 @@ public static Config config = new Config();
         window.setTitle("Mind Time");
         window.setMaxWidth(450);
 
+        //set up the main stage
+        window.setScene(mainScene());
+        window.show();
 
+    }
+
+    public static Scene mainScene(){
         //Main window Title
 
-        //Top Scene
+            //Top Scene
             //Top menu
             bulletMenu = new Menu("BulletEvent");       //Menu
             MenuItem newItem = new MenuItem("New Event...");        //Item
@@ -124,10 +130,7 @@ public static Config config = new Config();
         //Principal Scene
         mainScene = new Scene(mainLayout, 400, 900);
 
-        //set up the main stage
-        window.setScene(mainScene);
-        window.show();
-
+        return mainScene;
     }
 }
 

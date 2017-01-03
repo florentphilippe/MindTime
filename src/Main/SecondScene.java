@@ -9,13 +9,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class SecondScene {
 
     //Scene which appears when clicking on "Edit" on each DayEvent
-    public static Scene SecondScene(DayEvent currentDayEvent){
+    public static Scene secondScene(DayEvent currentDayEvent){
         Label title = new Label();
 
         title.setText("\t"+DayEvent.nameConstructor(currentDayEvent));
@@ -52,7 +51,7 @@ public class SecondScene {
         //Bottom
         Button returnButton = new Button();
         returnButton.setText("Return");
-        returnButton.setOnAction(event -> Main.window.setScene(Main.mainScene));
+        returnButton.setOnAction(event -> Main.window.setScene(Main.mainScene()));
 
         HBox bottomLayout= new HBox(25);
         bottomLayout.getChildren().add(returnButton);

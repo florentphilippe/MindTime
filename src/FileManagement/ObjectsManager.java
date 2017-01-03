@@ -171,7 +171,7 @@ public class ObjectsManager  {
 
             title.setText("\t"+DayEvent.nameConstructor(currentDay));
             edit.setText("Edit");
-            edit.setOnAction(e -> Main.Main.window.setScene(Main.SecondScene.SecondScene(currentDay)));
+            edit.setOnAction(e -> Main.Main.window.setScene(Main.SecondScene.secondScene(currentDay)));
 
             for (BulletEvent currentEvent : currentDay.getEventsList()){
                 content.append(BulletEvent.convertByte(currentEvent.getType()));
