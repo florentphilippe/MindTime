@@ -91,7 +91,7 @@ public class ObjectsManager  {
 
 
 
-    //Automatic constructor of a list from BulletEvent ArrayList
+    //Automatic constructor of a DayEvent list from BulletEvent ArrayList
     public static ArrayList<DayEvent> automaticConstructor(ArrayList<BulletEvent> sourceList){
         System.out.println("Launching the automaticConstructor method ... ");
 

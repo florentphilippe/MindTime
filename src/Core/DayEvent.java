@@ -85,8 +85,14 @@ public class DayEvent {
             }
         i++;
         }
+
+        //Writing the changes in the file
         Main.bulletEvents.clear();
         Main.bulletEvents.addAll(processingList);
         ObjectsManager.ObjectListWriter(Main.bulletEvents);
+
+        //Updating the DayEvent list
+        Main.dayEvents.clear();
+        Main.dayEvents.addAll(ObjectsManager.automaticConstructor(Main.bulletEvents));
     }
 }
