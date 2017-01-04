@@ -158,7 +158,10 @@ public class newEventWindow {
         }
 
         //Setting the content in Main window
-        Main.mainLayout.setCenter(ObjectsManager.dayEventConstructor(dayEvents));
+        Main.window.setScene(Main.mainScene());
+
+        //This method doesn't resize the Scene and don't refresh the ScrollPane
+        //Main.mainLayout.setCenter(ObjectsManager.dayEventConstructor(dayEvents));
 
 
         /* This method doesn't working...
