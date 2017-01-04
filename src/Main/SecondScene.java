@@ -28,12 +28,17 @@ public class SecondScene {
         mainLayout.setPadding(new Insets(20,15,5,15));
         mainLayout.getChildren().add(title);
 
+        //Describe each BulletEvent of the DayEvent
         for (BulletEvent currentEvent : currentDayEvent.getEventsList()){
+            HBox buttonBar = new HBox(10);
             BorderPane borderPane = new BorderPane();
             Label eventName = new Label();
             Button deleteButton = new Button();
+            Button editButton = new Button();
 
             eventName.setText(BulletEvent.convertByte(currentEvent.getType())+" "+currentEvent.getName());
+
+            //Delete Button
             deleteButton.setText("Delete");
             deleteButton.setOnAction(event -> {
                 DayEvent.bulletDeleter(currentEvent);
@@ -41,8 +46,18 @@ public class SecondScene {
                 deleteButton.setDisable(true);
                 });
 
+            //Edit Button
+            editButton.setText("Edit");
+            editButton.setOnAction(event -> {
+                newEventWindow.newEvent();
+                editButton.setText("Edited");
+                editButton.setDisable(true);
+                DayEvent.bulletDeleter(currentEvent);
+            });
+
+            buttonBar.getChildren().addAll(editButton,deleteButton);
             borderPane.setLeft(eventName);
-            borderPane.setRight(deleteButton);
+            borderPane.setRight(buttonBar);
             mainLayout.getChildren().add(borderPane);
         }
 
