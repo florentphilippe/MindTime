@@ -87,6 +87,7 @@ public class SecondScene {
 
     //Editing Stage
     public static Stage editEvent(String editName) {
+
         //new Stage
         Stage secondaryStage = new Stage();
         secondaryStage.setTitle("Edit Event");
@@ -134,7 +135,7 @@ public class SecondScene {
             Button okButton = new Button("OK");
             okButton.setDefaultButton(true);
             okButton.setOnAction(e -> {
-                newEventWindow.okButtonAction(nameInput.getText(), BulletEvent.convertTypeChoice(typeChoice), newEventWindow.getDate(dateSelection));
+                boolean eventEdited = newEventWindow.okButtonAction(nameInput.getText(), BulletEvent.convertTypeChoice(typeChoice), newEventWindow.getDate(dateSelection));
                 System.out.println("BulletEvent.counter = "+BulletEvent.getCounter()+"\n");
                 secondaryStage.close();
             });

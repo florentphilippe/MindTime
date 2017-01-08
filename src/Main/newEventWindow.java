@@ -130,7 +130,7 @@ public class newEventWindow {
 
 
     //OkButton Action
-    public static void okButtonAction(String stringName,Byte type,LocalDate localDate){
+    public static boolean okButtonAction(String stringName,Byte type,LocalDate localDate){
         //Create new event and add it to the list
         BulletEvent newBulletEvent = new BulletEvent();
         newBulletEvent.setName(stringName);
@@ -178,6 +178,9 @@ public class newEventWindow {
         config.setCounter(BulletEvent.getCounter());
         Config.ConfigWriter(config);
         System.out.println(config.toString());
+
+        //Return the action's proof
+        return true;
     }
 
 }
