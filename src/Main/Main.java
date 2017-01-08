@@ -23,6 +23,7 @@ public class Main extends Application {
     * The MindTime Project
     * v. 1.0 (26/12/2016)
     * v. 1.1 (02/01/2017)
+    * v. 1.2 (08/01/2017)
     *
     * Started on the 12/11/2016
     */
