@@ -1,4 +1,4 @@
-#Mind Time
+# Mind Time
 A very small client inspired from the Bullet Journal that help you to manage better your time :p  
 Actually it's not so powerful for now, the project started recently and I'll do my best to improve it.
 
